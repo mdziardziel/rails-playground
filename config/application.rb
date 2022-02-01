@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "../lib/middlewares/trailer"
 
 require "rails/all"
 
@@ -18,5 +19,8 @@ module Playground
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.middleware.use Rack::Chunked
+    config.middleware.use Middlewares::Trailer
   end
 end
